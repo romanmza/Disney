@@ -1,6 +1,8 @@
 package com.Alkemychallenge.Disney.entities;
 
 import java.util.Date;
+import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -22,8 +24,8 @@ public class Pelicula {
     @Temporal(TemporalType.DATE)
     private Date fechaCreacion;
     private Integer calificacion;
-    @ManyToMany
-    private Personaje personajesAsociados;
+    @ManyToMany(cascade = CascadeType.ALL)
+    private List <Personaje> personajesAsociados;
 
     /**
      * @return the id
@@ -98,14 +100,14 @@ public class Pelicula {
     /**
      * @return the personajesAsociados
      */
-    public Personaje getPersonajesAsociados() {
+    public List <Personaje> getPersonajesAsociados() {
         return personajesAsociados;
     }
 
     /**
      * @param personajesAsociados the personajesAsociados to set
      */
-    public void setPersonajesAsociados(Personaje personajesAsociados) {
+    public void setPersonajesAsociados(List <Personaje> personajesAsociados) {
         this.personajesAsociados = personajesAsociados;
     }
 
@@ -113,5 +115,7 @@ public class Pelicula {
     public String toString() {
         return "Pelicula{" + "id=" + id + ", imagen=" + imagen + ", titulo=" + titulo + ", fechaCreacion=" + fechaCreacion + ", calificacion=" + calificacion + ", personajesAsociados=" + personajesAsociados + '}';
     }
+
+
 
 }

@@ -3,15 +3,15 @@
 
 package com.Alkemychallenge.Disney.entities;
 
-import java.util.Date;
+import java.util.List;
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 import org.hibernate.annotations.GenericGenerator;
 
-
+@Entity
 public class Genero {
     
      @Id
@@ -21,8 +21,8 @@ public class Genero {
 
     private String nombre;
     private String imagen;
-    @ManyToMany
-    private Pelicula peliculasAsociadas;
+    @ManyToMany(cascade = CascadeType.ALL)
+    private List <Pelicula> peliculasAsociadas;
 
     /**
      * @return the id
@@ -69,14 +69,14 @@ public class Genero {
     /**
      * @return the peliculasAsociadas
      */
-    public Pelicula getPeliculasAsociadas() {
+    public List <Pelicula> getPeliculasAsociadas() {
         return peliculasAsociadas;
     }
 
     /**
      * @param peliculasAsociadas the peliculasAsociadas to set
      */
-    public void setPeliculasAsociadas(Pelicula peliculasAsociadas) {
+    public void setPeliculasAsociadas(List <Pelicula> peliculasAsociadas) {
         this.peliculasAsociadas = peliculasAsociadas;
     }
 
@@ -84,10 +84,8 @@ public class Genero {
     public String toString() {
         return "Genero{" + "id=" + id + ", nombre=" + nombre + ", imagen=" + imagen + ", peliculasAsociadas=" + peliculasAsociadas + '}';
     }
-    
-    
-    
-    
-    
 
+    
+    
+    
 }
